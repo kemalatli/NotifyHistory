@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -25,14 +26,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
 
+    api(project(mapOf("path" to ":data")))
     api(AndroidX.lifecycle.runtimeKtx)
     api(AndroidX.room.ktx)
     kapt(AndroidX.room.compiler)
     api(Libs.jodaTime)
     api(JakeWharton.timber)
+    implementation(Google.dagger.hilt.android)
+    kapt(Google.dagger.hilt.compiler)
 
 }

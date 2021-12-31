@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -34,17 +35,22 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.0.5"
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":domain")))
+    implementation (Google.android.material)
     implementation (AndroidX.core.ktx)
     implementation (AndroidX.compose.ui)
     implementation (AndroidX.compose.material)
     implementation (AndroidX.compose.ui.toolingPreview)
     implementation (AndroidX.activity.compose)
-    implementation(AndroidX.navigation.compose)
-    implementation (Google.android.material)
+    implementation(Google.dagger.hilt.android)
+    kapt(Google.dagger.hilt.compiler)
 
     testImplementation (Testing.junit4)
     androidTestImplementation (AndroidX.test.ext.junit)
