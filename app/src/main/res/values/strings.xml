@@ -3,4 +3,7 @@
     <string name="notification_permission_needed_title">Permission needed!</string>
     <string name="notification_permission_needed_subtitle">This app requires permission to view received notifications. You can give this permission directly from settins.</string>
     <string name="notification_permission_needed_action">Take me to settings</string>
+    <string name="notification_battery_optmized_title">Your battery is optimized</string>
+    <string name="notification_battery_optmized_subtitle">This app requires to turn off battery optimizations to get every notifications received.</string>
+    <string name="notification_battery_optmized_action">Turn off optimization</string>
 </resources>

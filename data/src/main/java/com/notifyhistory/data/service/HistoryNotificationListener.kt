@@ -5,7 +5,6 @@ import android.service.notification.StatusBarNotification
 import com.notifyhistory.data.model.NotificationEntity
 import com.notifyhistory.data.repository.NotificationRepository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -14,9 +13,6 @@ class HistoryNotificationListener : NotificationListenerService() {
 
     @Inject
     lateinit var notificationRepository: NotificationRepository
-
-    @Inject
-    lateinit var coroutineScope: CoroutineScope
 
     override fun onListenerConnected() {
         super.onListenerConnected()

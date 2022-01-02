@@ -1,9 +1,11 @@
 package com.notifyhistory.domain.manager
 
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,6 +13,7 @@ import com.notifyhistory.data.service.HistoryNotificationListener
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class PermissionManagerImpl @Inject constructor(
@@ -46,6 +49,14 @@ class PermissionManagerImpl @Inject constructor(
                 })
             }
         }
+        intent.flags = FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+    }
+
+    @SuppressLint("BatteryLife")
+    override fun requestBatteryPermissions() {
+        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+        intent.data = Uri.parse("package:${context.packageName}")
         intent.flags = FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }

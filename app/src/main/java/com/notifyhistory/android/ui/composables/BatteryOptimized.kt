@@ -10,17 +10,17 @@ import com.notifyhistory.android.R
 import com.notifyhistory.android.ui.main.MainViewModel
 
 @Composable
-fun NeedPermission(
+fun BatteryOptimized(
     mainViewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        Text(text = stringResource(id = R.string.notification_permission_needed_title))
-        Text(text = stringResource(id = R.string.notification_permission_needed_subtitle))
+        Text(text = stringResource(id = R.string.notification_battery_optmized_title))
+        Text(text = stringResource(id = R.string.notification_battery_optmized_subtitle))
         Button(onClick = {
-            mainViewModel.requestNotificationPermission()
+            mainViewModel.requestBatteryPermission()
         }) {
-            Text(text = stringResource(id = R.string.notification_permission_needed_action))
+            Text(text = stringResource(id = R.string.notification_battery_optmized_action))
         }
     }
 }

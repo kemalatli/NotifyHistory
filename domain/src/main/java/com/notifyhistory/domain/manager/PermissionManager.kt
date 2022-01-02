@@ -4,5 +4,6 @@ interface PermissionManager {
 
     fun isNotificationPermissionGranted(): Boolean
     fun requestNotificationPermission()
+    fun requestBatteryPermissions()
 
 }

@@ -10,6 +10,8 @@ sealed class NotificationData {
 
     object NeedPermission : NotificationData()
 
+    object BatteryOptimized : NotificationData()
+
     class Data(val list: List<NotificationEntity>) : NotificationData()
 
 }

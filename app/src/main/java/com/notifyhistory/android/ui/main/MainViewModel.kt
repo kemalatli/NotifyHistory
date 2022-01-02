@@ -25,6 +25,10 @@ class MainViewModel @Inject constructor(
         getRecentNotifications.permissionManager.requestNotificationPermission()
     }
 
+    fun requestBatteryPermission() {
+        getRecentNotifications.permissionManager.requestBatteryPermissions()
+    }
+
     fun refreshNotifications() {
         lastUpdated.value = System.currentTimeMillis()
     }
