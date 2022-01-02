@@ -19,7 +19,7 @@ fun MainScreen(
     val notificationData by mainViewModel.recentNotifications.collectAsState(NotificationData.Idle)
 
     when (notificationData) {
-        is NotificationData.Data -> Notifications()
+        is NotificationData.Data -> Notifications((notificationData as NotificationData.Data).list)
         NotificationData.Idle, NotificationData.Loading -> Loading()
         NotificationData.NeedPermission -> NeedPermission(mainViewModel)
     }

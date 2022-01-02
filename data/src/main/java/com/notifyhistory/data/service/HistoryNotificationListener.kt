@@ -3,10 +3,9 @@ package com.notifyhistory.data.service
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import com.notifyhistory.data.model.NotificationEntity
-import com.notifyhistory.data.persistence.LocalDatabase
+import com.notifyhistory.data.repository.NotificationRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -14,7 +13,7 @@ import javax.inject.Inject
 class HistoryNotificationListener : NotificationListenerService() {
 
     @Inject
-    lateinit var localDatabase: LocalDatabase
+    lateinit var notificationRepository: NotificationRepository
 
     @Inject
     lateinit var coroutineScope: CoroutineScope
@@ -24,9 +23,9 @@ class HistoryNotificationListener : NotificationListenerService() {
         Timber.d("Listener connected!")
         // Persist active items
         val activeNotifications = activeNotifications.map { it.asEntity(true) }
-        persistNotifications(
+        notificationRepository.persistNotifications(
             clearActiveItems = true,
-            notificationEntity = activeNotifications.toTypedArray()
+            notifications = activeNotifications.toTypedArray()
         )
     }
 
@@ -35,7 +34,7 @@ class HistoryNotificationListener : NotificationListenerService() {
         super.onNotificationPosted(sbn, rankingMap)
         // Persist posted items
         sbn?.let {
-            persistNotifications(false, it.asEntity(true))
+            notificationRepository.persistNotifications(false, it.asEntity(true))
         }
     }
 
@@ -47,17 +46,7 @@ class HistoryNotificationListener : NotificationListenerService() {
         super.onNotificationRemoved(sbn, rankingMap, reason)
         // Persist removed items
         sbn?.let {
-            persistNotifications(false, it.asEntity(false))
-        }
-    }
-
-    private fun persistNotifications(
-        clearActiveItems: Boolean,
-        vararg notificationEntity: NotificationEntity
-    ) {
-        coroutineScope.launch {
-            if (clearActiveItems) localDatabase.notificationDao().deleteAllActive()
-            localDatabase.notificationDao().insert(*notificationEntity)
+            notificationRepository.persistNotifications(false, it.asEntity(false))
         }
     }
 

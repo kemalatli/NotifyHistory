@@ -7,4 +7,6 @@ interface NotificationRepository {
 
     fun getRecentNotifications(): Flow<List<NotificationEntity>>
 
+    fun persistNotifications(clearActiveItems: Boolean, vararg notifications: NotificationEntity)
+
 }
