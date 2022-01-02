@@ -6,4 +6,10 @@
     <string name="notification_battery_optmized_title">Your battery is optimized</string>
     <string name="notification_battery_optmized_subtitle">This app requires to turn off battery optimizations to get every notifications received.</string>
     <string name="notification_battery_optmized_action">Turn off optimization</string>
+    <string name="notifications_active">Active notifications</string>
+    <string name="notifications_dismissed">Dismissed notifications</string>
+    <string name="notification_auto_start_needed_action">Take me to auto start settings</string>
+    <string name="notification_auto_start_needed_title">Auto start settings needed</string>
+    <string name="notification_auto_start_needed_subtitle">This app requires auto start permission to catch all notifications received</string>
+    <string name="notifications_empty">You dont have any notifications yet</string>
 </resources>

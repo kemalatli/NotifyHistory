@@ -11,7 +11,6 @@ data class NotificationEntity(
     val title: String = "",
     val text: String = "",
     val packageName: String = "",
-    val tickerText: String = "",
     val group: String = "",
     val visibility: Int = 0,
     val postTime: Long = 0L,

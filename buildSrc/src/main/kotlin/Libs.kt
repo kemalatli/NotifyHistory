@@ -14,5 +14,6 @@ import kotlin.String
 object Libs {
 
     const val jodaTime = "joda-time:joda-time:_"
+    const val autoStart = "com.github.judemanutd:autostarter:_"
 
 }

@@ -17,12 +17,7 @@ class HistoryNotificationListener : NotificationListenerService() {
     override fun onListenerConnected() {
         super.onListenerConnected()
         Timber.d("Listener connected!")
-        // Persist active items
-        val activeNotifications = activeNotifications.map { it.asEntity(true) }
-        notificationRepository.persistNotifications(
-            clearActiveItems = true,
-            notifications = activeNotifications.toTypedArray()
-        )
+        retrieveActiveNotifications()
     }
 
 
@@ -46,16 +41,24 @@ class HistoryNotificationListener : NotificationListenerService() {
         }
     }
 
+    private fun retrieveActiveNotifications() {
+        // Persist active items
+        val activeNotifications = activeNotifications.map { it.asEntity(true) }
+        notificationRepository.persistNotifications(
+            clearActiveItems = true,
+            notifications = activeNotifications.toTypedArray()
+        )
+    }
+
     private fun StatusBarNotification.asEntity(isActive: Boolean): NotificationEntity {
-        val title: String = notification?.extras?.getString("android.title") ?: ""
-        val text: String = notification?.extras?.getString("android.text") ?: ""
+        val title: String = notification?.extras?.getCharSequence("android.title")?.toString() ?: ""
+        val text: String = notification?.extras?.getCharSequence("android.text")?.toString() ?: ""
         return NotificationEntity(
             key = key,
             sbnId = id,
             title = title,
             text = text,
             packageName = packageName,
-            tickerText = notification?.tickerText.toString(),
             group = notification?.group ?: "",
             visibility = notification?.visibility ?: 0,
             postTime = postTime,

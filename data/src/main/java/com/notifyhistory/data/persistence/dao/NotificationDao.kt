@@ -13,10 +13,10 @@ abstract class NotificationDao {
     @Insert(onConflict = REPLACE)
     abstract suspend fun insert(vararg notificationEntity: NotificationEntity)
 
-    @Query("DELETE FROM notifications where isActive=1")
+    @Query("UPDATE notifications set isActive=0")
     abstract suspend fun deleteAllActive()
 
-    @Query("SELECT * FROM notifications sorted  limit 20")
+    @Query("SELECT * FROM notifications sorted order by isActive desc, postTime desc limit 20")
     abstract fun getRecentNotifications(): Flow<List<NotificationEntity>>
 
 }

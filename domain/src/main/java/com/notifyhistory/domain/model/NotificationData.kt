@@ -12,6 +12,8 @@ sealed class NotificationData {
 
     object BatteryOptimized : NotificationData()
 
+    object AutoStartDisabled : NotificationData()
+
     class Data(val list: List<NotificationEntity>) : NotificationData()
 
 }

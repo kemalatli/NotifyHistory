@@ -1,5 +1,6 @@
 package com.notifyhistory.data.repository
 
+import androidx.core.app.NotificationCompat
 import com.notifyhistory.data.model.NotificationEntity
 import com.notifyhistory.data.persistence.LocalDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -19,11 +20,17 @@ class NotificationRepositoryImpl @Inject constructor(
         return localDatabase.notificationDao().getRecentNotifications()
     }
 
-    override fun persistNotifications(clearActiveItems: Boolean, vararg notifications: NotificationEntity) {
+    override fun persistNotifications(
+        clearActiveItems: Boolean,
+        vararg notifications: NotificationEntity
+    ) {
         coroutineScope.launch {
-            Timber.d("Persisting ${notifications.size} items")
+            val items = notifications
+                .filter { it.visibility == NotificationCompat.VISIBILITY_PUBLIC }
+                .toTypedArray()
+            Timber.d("Persisting ${items.size} items")
             if (clearActiveItems) localDatabase.notificationDao().deleteAllActive()
-            localDatabase.notificationDao().insert(*notifications)
+            localDatabase.notificationDao().insert(*items)
         }
     }
 

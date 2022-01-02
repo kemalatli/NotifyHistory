@@ -40,5 +40,6 @@ dependencies {
     api(JakeWharton.timber)
     implementation(Google.dagger.hilt.android)
     kapt(Google.dagger.hilt.compiler)
+    api(Libs.autoStart)
 
 }

@@ -3,10 +3,7 @@ package com.notifyhistory.android.ui.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.notifyhistory.android.ui.composables.BatteryOptimized
-import com.notifyhistory.android.ui.composables.Loading
-import com.notifyhistory.android.ui.composables.NeedPermission
-import com.notifyhistory.android.ui.composables.Notifications
+import com.notifyhistory.android.ui.composables.*
 import com.notifyhistory.android.ui.main.MainViewModel
 import com.notifyhistory.domain.model.NotificationData
 
@@ -23,6 +20,7 @@ fun MainScreen(
         NotificationData.Idle, NotificationData.Loading -> Loading()
         NotificationData.BatteryOptimized -> BatteryOptimized(mainViewModel)
         NotificationData.NeedPermission -> NeedPermission(mainViewModel)
+        NotificationData.AutoStartDisabled -> AutoStartNeeded(mainViewModel)
     }
 
 }
