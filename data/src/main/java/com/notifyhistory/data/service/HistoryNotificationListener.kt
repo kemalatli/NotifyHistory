@@ -1,5 +1,6 @@
 package com.notifyhistory.data.service
 
+import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import com.notifyhistory.data.model.NotificationEntity
@@ -13,6 +14,12 @@ class HistoryNotificationListener : NotificationListenerService() {
 
     @Inject
     lateinit var notificationRepository: NotificationRepository
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Ensure we have the latest notifications when app starts the service
+        retrieveActiveNotifications()
+        return super.onStartCommand(intent, flags, startId)
+    }
 
     override fun onListenerConnected() {
         super.onListenerConnected()

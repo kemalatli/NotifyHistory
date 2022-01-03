@@ -47,8 +47,10 @@ dependencies {
     implementation (AndroidX.core.ktx)
     implementation (AndroidX.compose.ui)
     implementation (AndroidX.compose.material)
+    implementation (AndroidX.compose.animation)
     implementation (AndroidX.compose.ui.toolingPreview)
     implementation (AndroidX.activity.compose)
+    implementation(Libs.drawablePainter)
     implementation(Google.dagger.hilt.android)
     kapt(Google.dagger.hilt.compiler)
 

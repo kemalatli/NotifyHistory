@@ -12,4 +12,9 @@
     <string name="notification_auto_start_needed_title">Auto start settings needed</string>
     <string name="notification_auto_start_needed_subtitle">This app requires auto start permission to catch all notifications received</string>
     <string name="notifications_empty">You dont have any notifications yet</string>
+    <string name="core_ago_day">%dd</string>
+    <string name="core_ago_hour">%dh</string>
+    <string name="core_ago_minute">%dm</string>
+    <string name="core_ago_week">%dw</string>
+    <string name="core_just_now">Right now</string>
 </resources>

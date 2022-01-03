@@ -2,7 +2,10 @@ package com.notifyhistory.android.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val Yellow500 = Color(0xFFE7DD23)
+val Yellow700 = Color(0xFFE4D905)
+val Orange = Color(0xFFDA8403)
+val SurfaceLight = Color(0xFFF0F0F0)
+val SurfaceDark = Color(0xFF35322E)
+val BackgroundLight = Color(0xFFFFFFFF)
+val BackgroundDark = Color(0xFF000000)
