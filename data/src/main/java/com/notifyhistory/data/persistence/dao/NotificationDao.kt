@@ -16,6 +16,9 @@ abstract class NotificationDao {
     @Query("UPDATE notifications set isActive=0")
     abstract suspend fun deleteAllActive()
 
+    @Query("SELECT * FROM notifications sorted where isActive=1 order by isActive desc, postTime desc limit 20")
+    abstract fun getRecentActiveNotifications(): Flow<List<NotificationEntity>>
+
     @Query("SELECT * FROM notifications sorted order by isActive desc, postTime desc limit 20")
     abstract fun getRecentNotifications(): Flow<List<NotificationEntity>>
 

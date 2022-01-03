@@ -19,6 +19,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -81,10 +82,18 @@ fun EmptyNotifications() {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.align(Alignment.Center)) {
             Image(
-                painter = painterResource(id = R.drawable.abc_vector_test),
-                contentDescription = "No notifications"
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .size(48.dp),
+                painter = painterResource(id = R.drawable.ic_baseline_hourglass_empty_24),
+                contentDescription = "No notifications",
+                colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface)
             )
-            Text(text = stringResource(id = R.string.notifications_empty))
+            Text(
+                modifier = Modifier.padding(vertical = 10.dp),
+                text = stringResource(id = R.string.notifications_empty),
+                style = MaterialTheme.typography.body2
+            )
         }
     }
 }

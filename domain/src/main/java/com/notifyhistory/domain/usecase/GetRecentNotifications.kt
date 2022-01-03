@@ -21,7 +21,7 @@ class GetRecentNotifications @Inject constructor(
     private val notificationRepository: NotificationRepository
 ) {
 
-    operator fun invoke(): Flow<NotificationData> = flow {
+    operator fun invoke(showOnlyActive: Boolean): Flow<NotificationData> = flow {
 
         // Set loading state
         emit(NotificationData.Loading)
@@ -53,7 +53,7 @@ class GetRecentNotifications @Inject constructor(
 
         Timber.d("All checks completed.")
         serviceStateManager.ensureServiceRunning()
-        val notifications = notificationRepository.getRecentNotifications()
+        val notifications = notificationRepository.getRecentNotifications(showOnlyActive)
         emitAll(notifications.map { NotificationData.Data(it) })
 
     }

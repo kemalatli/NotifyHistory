@@ -17,4 +17,7 @@
     <string name="core_ago_minute">%dm</string>
     <string name="core_ago_week">%dw</string>
     <string name="core_just_now">Right now</string>
+    <string name="notifications_filter_by">Filter by</string>
+    <string name="notifications_all">All notifications</string>
+    <string name="notifications_only_active">Only active notifications</string>
 </resources>

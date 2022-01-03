@@ -15,8 +15,11 @@ class NotificationRepositoryImpl @Inject constructor(
     private val coroutineScope: CoroutineScope
 ) : NotificationRepository {
 
-    override fun getRecentNotifications(): Flow<List<NotificationEntity>> {
-        return localDatabase.notificationDao().getRecentNotifications()
+    override fun getRecentNotifications(showOnlyActive: Boolean): Flow<List<NotificationEntity>> {
+        return if (showOnlyActive)
+            localDatabase.notificationDao().getRecentActiveNotifications()
+        else
+            localDatabase.notificationDao().getRecentNotifications()
     }
 
     override fun persistNotifications(
